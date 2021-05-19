@@ -199,6 +199,7 @@ namespace TentaWinForm
             this.tidComboBox.Name = "tidComboBox";
             this.tidComboBox.Size = new System.Drawing.Size(151, 31);
             this.tidComboBox.TabIndex = 11;
+            this.tidComboBox.SelectedIndexChanged += new System.EventHandler(this.tidComboBox_SelectedIndexChanged);
             // 
             // label5
             // 

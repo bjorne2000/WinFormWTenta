@@ -8,22 +8,26 @@ namespace BackendWinFormTenta
 {
     public class BokningsHantering
     {
-        public bool Boka(string namn, string tele, string adress, int persNr, string film, string tid, int biljetter)
+        public bool Boka(string namn, string tele, string adress, int persNr, string film, string tid, int biljetter, string platser)
         {
             bool succes = false;
             using(DbContextMovie dbContext = new DbContextMovie())
             {
                 var kund = new Kund(tele, namn, adress, persNr);
                 var visning = dbContext.visningar.First(v => v.visningsFilm.filmNamn == film && v.start.TimeOfDay == DateTime.Parse(tid).TimeOfDay);
-                foreach (var item in dbContext.bokningar)
-                {
-                    if (item.bokadVisning == visning && item.plats == biljetter)
-                    {
-                        return succes;
-                       
-                    }
-                }
-                Bokning bokning = new Bokning(kund, visning, biljetter);
+                //foreach (var item in dbContext.bokningar)
+                //{
+                //    if (item.bokadVisning == visning && item.biljetter == biljetter)
+                //    {
+                //        return succes;                       
+                //    }
+                //}
+
+                //:::::::::::::::::
+
+
+                //:::::::::::::::::
+                Bokning bokning = new Bokning(kund, visning, biljetter, platser);
 
                     dbContext.bokningar.Add(bokning);
                     succes = true;

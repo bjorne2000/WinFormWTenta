@@ -21,15 +21,23 @@ namespace TentaWinForm
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-            PlatserCheck();
+            var checkBoxar = checkArray();
+            string platser = "";
+            for (int i = 0; i < checkBoxar.Length; i++)
+            {
+                if(checkBoxar[i].Checked == true && checkBoxar[i].Enabled == true)
+                {
+                    platser+= $"Plats:{i}, ";
+                }
+            }
             BokningsHantering obj = new BokningsHantering();  
             if(ValidateAdress() && ValidateFirstName() && ValidatePhoneNr() && ValidatePersonNr() && checkMovie())
             {
-                bool bokad = obj.Boka(namn.Text.ToString(), tele.Text.ToString(), adress.Text.ToString(), int.Parse(personNr.Text), FilmComboBox.Text.ToString(), tidComboBox.Text.ToString(), int.Parse(txtBiljett.Text));
+                bool bokad = obj.Boka(namn.Text.ToString(), tele.Text.ToString(), adress.Text.ToString(), int.Parse(personNr.Text), FilmComboBox.Text.ToString(), tidComboBox.Text.ToString(), int.Parse(txtBiljett.Text), platser);
                 if (bokad)
                 {
                     succeslbl.Text = $"{namn.Text} har bokat plats nr:{txtBiljett.Text} till filmen {FilmComboBox.Text} klockan {tidComboBox}";
+                    PlatserCheck();
                 }
                 else
                 {
@@ -193,12 +201,12 @@ namespace TentaWinForm
             {
                 BokningsHantering bokning = new BokningsHantering();
                 //var visning = bokning.GetVisning(tidComboBox.Text.ToString(), FilmComboBox.Text.ToString());
-                var visning = dbContext.visningar.First(v => v.visningsFilm.filmNamn == FilmComboBox.Text.ToString() && v.start.TimeOfDay == DateTime.Parse(tidComboBox.Text).TimeOfDay);
-                var upptagnaPlatser = bokning.createArray(visning.visningsSalong);
+
                 if (FilmComboBox.SelectedIndex != -1 && tidComboBox.SelectedIndex != -1)
                 {
                     //var uppagnaPlatser = bokning.GetPlatser(visning);
-                    
+                    var visning = dbContext.visningar.First(v => v.visningsFilm.filmNamn == FilmComboBox.Text.ToString() && v.start.TimeOfDay == DateTime.Parse(tidComboBox.Text).TimeOfDay);
+                    var upptagnaPlatser = bokning.createArray(visning.visningsSalong);
                     var checkBoxar = checkArray();
 
                     for (int i = 0; i < upptagnaPlatser.Length; i++)
@@ -303,6 +311,35 @@ namespace TentaWinForm
         private void checkBox11_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tidComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (DbContextMovie dbContext = new DbContextMovie())
+            {
+                BokningsHantering bokning = new BokningsHantering();
+                //var visning = bokning.GetVisning(tidComboBox.Text.ToString(), FilmComboBox.Text.ToString());
+
+                if (FilmComboBox.SelectedIndex != -1 && tidComboBox.SelectedIndex != -1)
+                {
+                    var visning = dbContext.visningar.First(v => v.visningsFilm.filmNamn == FilmComboBox.Text.ToString() && v.start.TimeOfDay == DateTime.Parse(tidComboBox.Text).TimeOfDay);
+                    var upptagnaPlatser = bokning.createArray(visning.visningsSalong);
+                    //var uppagnaPlatser = bokning.GetPlatser(visning);
+
+                    var checkBoxar = checkArray();
+
+                    for (int i = 0; i < upptagnaPlatser.Length; i++)
+                    {
+                        if (upptagnaPlatser[i] == true)
+                        {
+                            checkBoxar[i].Checked = true;
+                            checkBoxar[i].Enabled = false;
+                        }
+                    }
+                }
+                dbContext.SaveChanges();
+
+            }
         }
     }
 }
