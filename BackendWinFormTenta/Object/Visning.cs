@@ -8,6 +8,8 @@ namespace BackendWinFormTenta
         public virtual DateTime start { get; set; }
         public virtual Salong visningsSalong { get; set; }
         public virtual Film visningsFilm { get; set; }
+        
+
 
         public Visning(string _start, Salong _VisningsSalong, Film _visningsFilm)
         {

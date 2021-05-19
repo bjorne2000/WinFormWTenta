@@ -4,14 +4,16 @@ using BackendWinFormTenta;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackendWinFormTenta.Migrations
 {
     [DbContext(typeof(DbContextMovie))]
-    partial class DbContextMovieModelSnapshot : ModelSnapshot
+    [Migration("20210519113828_PlasArray")]
+    partial class PlasArray
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,66 +91,6 @@ namespace BackendWinFormTenta.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("plats1")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats10")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats11")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats12")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats13")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats14")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats15")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats16")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats17")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats18")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats19")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats2")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats20")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats3")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats4")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats5")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats6")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats7")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats8")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("plats9")
-                        .HasColumnType("bit");
 
                     b.Property<int>("salongNum")
                         .HasColumnType("int");
