@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TentaWinForm", "TentaWinForm\TentaWinForm.csproj", "{D2408BB0-FAAD-41AF-9FA8-5B2F4CE9EDA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendWinFormTenta", "BackendWinFormTenta\BackendWinFormTenta.csproj", "{57FA3324-D535-4EE2-9F09-BCC59D235355}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2408BB0-FAAD-41AF-9FA8-5B2F4CE9EDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2408BB0-FAAD-41AF-9FA8-5B2F4CE9EDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2408BB0-FAAD-41AF-9FA8-5B2F4CE9EDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2408BB0-FAAD-41AF-9FA8-5B2F4CE9EDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FA3324-D535-4EE2-9F09-BCC59D235355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FA3324-D535-4EE2-9F09-BCC59D235355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FA3324-D535-4EE2-9F09-BCC59D235355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FA3324-D535-4EE2-9F09-BCC59D235355}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB31CA8E-5699-414D-B2FE-FD2EAC6507E3}
+	EndGlobalSection
+EndGlobal
