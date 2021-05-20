@@ -44,8 +44,6 @@ namespace TentaWinForm
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.FilmComboBox = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtBiljett = new System.Windows.Forms.TextBox();
             this.thumbNail = new System.Windows.Forms.PictureBox();
             this.succeslbl = new System.Windows.Forms.Label();
             this.lblNamn = new System.Windows.Forms.Label();
@@ -73,7 +71,7 @@ namespace TentaWinForm
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.lblSalong = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.thumbNail)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -247,32 +245,13 @@ namespace TentaWinForm
             this.FilmComboBox.TabIndex = 14;
             this.FilmComboBox.SelectedIndexChanged += new System.EventHandler(this.FilmComboBox_SelectedIndexChanged);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Crimson;
-            this.label7.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.Gold;
-            this.label7.Location = new System.Drawing.Point(358, 219);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 25);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Antal biljetter\r\n";
-            // 
-            // txtBiljett
-            // 
-            this.txtBiljett.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.txtBiljett.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBiljett.Location = new System.Drawing.Point(358, 247);
-            this.txtBiljett.Name = "txtBiljett";
-            this.txtBiljett.Size = new System.Drawing.Size(125, 31);
-            this.txtBiljett.TabIndex = 16;
-            // 
             // thumbNail
             // 
-            this.thumbNail.Location = new System.Drawing.Point(532, 34);
+            this.thumbNail.BackgroundImage = global::TentaWinForm.Properties.Resources.alienPoster;
+            this.thumbNail.Location = new System.Drawing.Point(644, 34);
             this.thumbNail.Name = "thumbNail";
-            this.thumbNail.Size = new System.Drawing.Size(226, 216);
+            this.thumbNail.Size = new System.Drawing.Size(321, 268);
+            this.thumbNail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.thumbNail.TabIndex = 17;
             this.thumbNail.TabStop = false;
             // 
@@ -282,9 +261,8 @@ namespace TentaWinForm
             this.succeslbl.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.succeslbl.Location = new System.Drawing.Point(667, 443);
             this.succeslbl.Name = "succeslbl";
-            this.succeslbl.Size = new System.Drawing.Size(91, 38);
+            this.succeslbl.Size = new System.Drawing.Size(0, 38);
             this.succeslbl.TabIndex = 18;
-            this.succeslbl.Text = "label8";
             // 
             // lblNamn
             // 
@@ -354,7 +332,7 @@ namespace TentaWinForm
             this.panel1.Controls.Add(this.checkBox3);
             this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Location = new System.Drawing.Point(358, 308);
+            this.panel1.Location = new System.Drawing.Point(300, 254);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(270, 173);
             this.panel1.TabIndex = 23;
@@ -540,15 +518,17 @@ namespace TentaWinForm
             this.checkBox1.TabIndex = 0;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // lblSalong
+            // button1
             // 
-            this.lblSalong.AutoSize = true;
-            this.lblSalong.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSalong.Location = new System.Drawing.Point(140, 443);
-            this.lblSalong.Name = "lblSalong";
-            this.lblSalong.Size = new System.Drawing.Size(65, 28);
-            this.lblSalong.TabIndex = 24;
-            this.lblSalong.Text = "label8";
+            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button1.Font = new System.Drawing.Font("Sitka Small", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(928, 443);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(89, 44);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Return";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // formBokning
             // 
@@ -556,7 +536,7 @@ namespace TentaWinForm
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1057, 526);
-            this.Controls.Add(this.lblSalong);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblPersNr);
             this.Controls.Add(this.lblTele);
@@ -564,8 +544,6 @@ namespace TentaWinForm
             this.Controls.Add(this.lblNamn);
             this.Controls.Add(this.succeslbl);
             this.Controls.Add(this.thumbNail);
-            this.Controls.Add(this.txtBiljett);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.FilmComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -605,8 +583,6 @@ namespace TentaWinForm
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox FilmComboBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtBiljett;
         private System.Windows.Forms.PictureBox thumbNail;
         private System.Windows.Forms.Label succeslbl;
         private System.Windows.Forms.Label lblNamn;
@@ -634,6 +610,6 @@ namespace TentaWinForm
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label lblSalong;
+        private System.Windows.Forms.Button button1;
     }
 }

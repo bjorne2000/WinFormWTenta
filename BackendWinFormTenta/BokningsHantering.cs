@@ -162,7 +162,20 @@ namespace BackendWinFormTenta
                 dbContext.SaveChanges();
                 return platser;
             }
+        }
 
+        public void RemoveEmpty()
+        {
+            using(DbContextMovie dbContext = new DbContextMovie())
+            {
+                var bort = dbContext.bokningar.Where(b => b.platser == "" || b.platser == null);
+
+                foreach (var item in bort)
+                {
+                    dbContext.bokningar.Remove(item);
+                }
+                dbContext.SaveChanges();
+            }
         }
 
     }

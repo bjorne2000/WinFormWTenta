@@ -55,25 +55,33 @@ namespace TentaWinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BokningsHantering bok = new BokningsHantering();
-            var checkBoxar = checkArray();
-            string platser = "";
-            var kund = bok.FindKund(teleNr.Text.ToString());
-            for (int i = 0; i < checkBoxar.Length; i++)
+            if(teleNr.Text != null && bokningar.SelectedIndex != -1)
             {
-                if (checkBoxar[i].Checked == true && checkBoxar[i].Enabled == true)
+                BokningsHantering bok = new BokningsHantering();
+                var checkBoxar = checkArray();
+                string platser = "";
+                var kund = bok.FindKund(teleNr.Text.ToString());
+                for (int i = 0; i < checkBoxar.Length; i++)
                 {
-                    platser += $"{i + 1}, ";
+                    if (checkBoxar[i].Checked == true && checkBoxar[i].Enabled == true)
+                    {
+                        platser += $"{i + 1}, ";
+                    }
+
+
                 }
-
-
+                bool bokad = bok.Boka(kund.namn, kund.teleNr, kund.adress, kund.perssonNr,
+                 FilmComboBox.Text.ToString(), tidComboBox.Text.ToString(), platser);
+                if (bokad)
+                {
+                    lblSucces.Text = "Bokning uppdaterad";
+                    bok.DeleteBokning(kund.teleNr, FilmComboBox.Text.ToString(), tidComboBox.Text.ToString());
+                    PlatserCheck();
+                    bok.RemoveEmpty();
+                }
+                else { lblSucces.Text = "Något gick snett"; }
             }
-            bool bokad = bok.Boka(kund.namn, kund.teleNr, kund.adress, kund.perssonNr,
-             FilmComboBox.Text.ToString(), tidComboBox.Text.ToString(), platser);
-            if (bokad)
-            {
-                PlatserCheck();
-            }
+
 
 
 
@@ -83,7 +91,7 @@ namespace TentaWinForm
             using (DbContextMovie dbContext = new DbContextMovie())
             {
                 BokningsHantering bokning = new BokningsHantering();
-                if (FilmComboBox.SelectedIndex != -1 && tidComboBox.SelectedIndex != -1)
+                if (FilmComboBox.SelectedIndex != -1 && tidComboBox.SelectedIndex != -1 && teleNr.Text != null && bokningar.SelectedIndex != -1)
                 {
                     var visning = dbContext.visningar.First(v => v.visningsFilm.filmNamn == FilmComboBox.Text.ToString() && v.start.TimeOfDay == DateTime.Parse(tidComboBox.Text).TimeOfDay);
                     var upptagnaPlatser = bokning.createArray(visning);
@@ -104,7 +112,14 @@ namespace TentaWinForm
                             checkBoxar[i].Enabled = true;
                         }
                     }
-                    string p = bokning.HittaPlatser(teleNr.Text.ToString(), FilmComboBox.Text.ToString(), tidComboBox.Text.ToString());
+                    string p = "";
+                    try
+                    {
+                        p = bokning.HittaPlatser(teleNr.Text.ToString(), FilmComboBox.Text.ToString(), tidComboBox.Text.ToString());
+
+                    }
+                    catch (Exception) { return; }
+
 
                     string[] split = p.Split(',');
                     for (int i = 0; i < split.Length; i++)
@@ -249,6 +264,19 @@ namespace TentaWinForm
             bokning.SparaPlatser(tidComboBox.Text.ToString(), FilmComboBox.Text.ToString(), platser);
 
             return succes;
+        }
+
+        private void lblSucces_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            StartForm form = new StartForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
         }
     }
 }

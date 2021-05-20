@@ -63,6 +63,7 @@ namespace TentaWinForm
             this.tidComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.lblSucces = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -423,11 +424,23 @@ namespace TentaWinForm
             this.lblSucces.AutoSize = true;
             this.lblSucces.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblSucces.ForeColor = System.Drawing.Color.Red;
-            this.lblSucces.Location = new System.Drawing.Point(439, 477);
+            this.lblSucces.Location = new System.Drawing.Point(60, 377);
             this.lblSucces.Name = "lblSucces";
-            this.lblSucces.Size = new System.Drawing.Size(59, 25);
+            this.lblSucces.Size = new System.Drawing.Size(0, 25);
             this.lblSucces.TabIndex = 32;
-            this.lblSucces.Text = "label4";
+            this.lblSucces.Click += new System.EventHandler(this.lblSucces_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button2.Font = new System.Drawing.Font("Sitka Small", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(60, 454);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(109, 43);
+            this.button2.TabIndex = 33;
+            this.button2.Text = "Return";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ChangeBokning
             // 
@@ -435,6 +448,7 @@ namespace TentaWinForm
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(876, 528);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.lblSucces);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
@@ -492,5 +506,6 @@ namespace TentaWinForm
         private System.Windows.Forms.ComboBox tidComboBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblSucces;
+        private System.Windows.Forms.Button button2;
     }
 }

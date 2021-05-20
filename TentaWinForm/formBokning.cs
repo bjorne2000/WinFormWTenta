@@ -17,6 +17,7 @@ namespace TentaWinForm
         public formBokning()
         {
             InitializeComponent();
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -29,6 +30,11 @@ namespace TentaWinForm
                 {
                     platser+= $"{i + 1}, ";
                 }
+                if(platser.Length < 1)
+                {
+                    succeslbl.Text = "Clicka i ALLA fält";
+                    return;
+                }
             }
             BokningsHantering obj = new BokningsHantering();  
             if(ValidateAdress() && ValidateFirstName() && ValidatePhoneNr() && ValidatePersonNr() && checkMovie())
@@ -36,8 +42,10 @@ namespace TentaWinForm
                 bool bokad = obj.Boka(namn.Text.ToString(), tele.Text.ToString(), adress.Text.ToString(), int.Parse(personNr.Text), FilmComboBox.Text.ToString(), tidComboBox.Text.ToString(), platser);
                 if (bokad)
                 {
-                    succeslbl.Text = $"{namn.Text} har bokat plats nr:{txtBiljett.Text} till filmen {FilmComboBox.Text} klockan {tidComboBox}";
+                    succeslbl.Text = $"Bokning lyckades";
                     PlatserCheck();
+                    obj.RemoveEmpty();
+
                 }
                 else
                 {
@@ -46,7 +54,7 @@ namespace TentaWinForm
             }
             else
             {
-                succeslbl.Text = "Kolla igenom så att du skrivit i alla rutor samt att det är korrekt information";
+                succeslbl.Text = "Ej korrect information";
             }
 
             
@@ -200,8 +208,8 @@ namespace TentaWinForm
             using(DbContextMovie dbContext = new DbContextMovie())
             {
 
-              
-
+                thumbNail.ImageLocation = @"C:\Users\bjorn\OneDrive\Bilder";
+                
 
                 BokningsHantering bokning = new BokningsHantering();
                 //var visning = bokning.GetVisning(tidComboBox.Text.ToString(), FilmComboBox.Text.ToString());
@@ -228,6 +236,9 @@ namespace TentaWinForm
 
                     }
                 }
+
+
+
                 dbContext.SaveChanges();
 
             }
@@ -355,6 +366,12 @@ namespace TentaWinForm
             }
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StartForm form = new StartForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }
