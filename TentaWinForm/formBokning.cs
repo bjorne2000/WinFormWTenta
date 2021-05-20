@@ -208,7 +208,7 @@ namespace TentaWinForm
             using(DbContextMovie dbContext = new DbContextMovie())
             {
 
-                thumbNail.ImageLocation = @"C:\Users\bjorn\OneDrive\Bilder";
+                thumbNail.ImageLocation = @$"C:\Users\bjorn\OneDrive\Bilder\{FilmComboBox.Text.ToString()}.jpg";
                 
 
                 BokningsHantering bokning = new BokningsHantering();

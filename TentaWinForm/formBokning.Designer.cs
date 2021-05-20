@@ -80,7 +80,7 @@ namespace TentaWinForm
             // 
             this.txt.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.txt.Font = new System.Drawing.Font("Sitka Small", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt.Location = new System.Drawing.Point(691, 308);
+            this.txt.Location = new System.Drawing.Point(640, 335);
             this.txt.Name = "txt";
             this.txt.Size = new System.Drawing.Size(145, 92);
             this.txt.TabIndex = 1;
@@ -237,7 +237,7 @@ namespace TentaWinForm
             "Saw",
             "The Others",
             "Wolf Creek",
-            "Psycho",
+            "Pshyco",
             "Misery"});
             this.FilmComboBox.Location = new System.Drawing.Point(358, 159);
             this.FilmComboBox.Name = "FilmComboBox";
@@ -247,11 +247,10 @@ namespace TentaWinForm
             // 
             // thumbNail
             // 
-            this.thumbNail.BackgroundImage = global::TentaWinForm.Properties.Resources.alienPoster;
-            this.thumbNail.Location = new System.Drawing.Point(644, 34);
+            this.thumbNail.Location = new System.Drawing.Point(640, 34);
             this.thumbNail.Name = "thumbNail";
-            this.thumbNail.Size = new System.Drawing.Size(321, 268);
-            this.thumbNail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.thumbNail.Size = new System.Drawing.Size(187, 245);
+            this.thumbNail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.thumbNail.TabIndex = 17;
             this.thumbNail.TabStop = false;
             // 
