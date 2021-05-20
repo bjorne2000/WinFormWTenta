@@ -31,6 +31,7 @@ namespace TentaWinForm
         {
             this.btnBoka = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +52,18 @@ namespace TentaWinForm
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button1.Font = new System.Drawing.Font("Sitka Small", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(809, 207);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(154, 75);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Boka om";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // StartForm
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
@@ -58,6 +71,7 @@ namespace TentaWinForm
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkMagenta;
             this.ClientSize = new System.Drawing.Size(1057, 526);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnBoka);
             this.Name = "StartForm";
             this.Text = "Biljet bokaren";
@@ -70,6 +84,7 @@ namespace TentaWinForm
 
         private System.Windows.Forms.Button btnBoka;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

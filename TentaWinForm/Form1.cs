@@ -34,5 +34,12 @@ namespace TentaWinForm
             formBokning bokning = new formBokning();
             bokning.ShowDialog();            
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            ChangeBokning frm = new ChangeBokning();
+            frm.ShowDialog();
+        }
     }
 }

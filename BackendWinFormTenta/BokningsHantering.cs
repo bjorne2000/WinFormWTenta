@@ -13,20 +13,32 @@ namespace BackendWinFormTenta
             bool succes = false;
             using(DbContextMovie dbContext = new DbContextMovie())
             {
+                bool sammaKund = false;
+                try
+                {
+                   sammaKund = dbContext.kunder.First().teleNr == tele ? true : false;
+                }
+                catch(Exception)
+                {
+ 
+                }
+                
+                if(sammaKund == true)
+                {
+                    var hittad = dbContext.kunder.First(k => k.teleNr == tele);
+                    var vis = dbContext.visningar.First(v => v.visningsFilm.filmNamn == film && v.start.TimeOfDay == DateTime.Parse(tid).TimeOfDay);
+
+                    Bokning bok = new Bokning(hittad, vis, platser);
+
+                    dbContext.bokningar.Add(bok);
+                    succes = true;
+                    dbContext.SaveChanges();
+                    return succes;
+                }
                 var kund = new Kund(tele, namn, adress, persNr);
+                
                 var visning = dbContext.visningar.First(v => v.visningsFilm.filmNamn == film && v.start.TimeOfDay == DateTime.Parse(tid).TimeOfDay);
-                //foreach (var item in dbContext.bokningar)
-                //{
-                //    if (item.bokadVisning == visning && item.biljetter == biljetter)
-                //    {
-                //        return succes;                       
-                //    }
-                //}
 
-                //:::::::::::::::::
-
-
-                //:::::::::::::::::
                 Bokning bokning = new Bokning(kund, visning, platser);
 
                     dbContext.bokningar.Add(bokning);
@@ -68,9 +80,10 @@ namespace BackendWinFormTenta
                     for (int i = 0; i < boolArray.Length; i++)
                     {
                         boolArray[i] = false;
-                        dbContext.SaveChanges();
-                        return boolArray;
+
                     }
+                    dbContext.SaveChanges();
+                    return boolArray;
                 }
 
                 else if(biljetter.Length > 0)
@@ -94,5 +107,63 @@ namespace BackendWinFormTenta
             
 
         }
+
+
+        public List<string> findBokning(string teleNr)
+        {
+            using(DbContextMovie dbContext = new DbContextMovie())
+            {
+                List<string> bokat = new List<string>();
+                var bokningar = dbContext.bokningar.Where(b => b.bokadKund.teleNr == teleNr);
+                foreach (var item in bokningar)
+                {
+                   bokat.Add($"Film:{item.bokadVisning.visningsFilm.filmNamn}, Tid: {item.bokadVisning.start.TimeOfDay}, Plats: {item.platser}");
+                }
+                return bokat;
+            }
+        }
+
+        public Kund FindKund(string tele)
+        {
+            using(DbContextMovie dbContext = new DbContextMovie())
+            {
+                var kund = dbContext.kunder.First(k => k.teleNr == tele);
+                dbContext.SaveChanges();
+                return kund;
+            }
+        }
+
+
+        public bool DeleteBokning(string tele, string film, string tid)
+        {
+            using(DbContextMovie dbContext = new DbContextMovie())
+            {
+                bool succes = false;
+                var bokning = dbContext.bokningar.First(b => b.bokadKund.teleNr == tele &&
+                              b.bokadVisning.start.TimeOfDay == DateTime.Parse(tid).TimeOfDay 
+                              && b.bokadVisning.visningsFilm.filmNamn == film);
+
+                dbContext.bokningar.Remove(bokning);
+
+                dbContext.SaveChanges();
+                return succes;
+            }
+
+        }
+
+        public string HittaPlatser(string tele, string film, string tid)
+        {
+            using(DbContextMovie dbContext = new DbContextMovie())
+            {
+                var kund = FindKund(tele);
+                var visning = dbContext.visningar.First(v => v.visningsFilm.filmNamn == film && v.start.TimeOfDay == DateTime.Parse(tid).TimeOfDay);
+                var bokning = dbContext.bokningar.First(b => b.bokadVisning == visning && b.bokadKund == kund);
+                string platser = bokning.platser;
+                dbContext.SaveChanges();
+                return platser;
+            }
+
+        }
+
     }
 }
